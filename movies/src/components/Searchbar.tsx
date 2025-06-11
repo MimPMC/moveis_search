@@ -6,7 +6,7 @@ import { Search } from "lucide-react";
 
 export function SearchBar() {
   return (
-    <div className="flex items-center w-full max-w-md rounded-md border px-2 py-1 shadow-sm">
+    <div className="flex items-center w-full rounded-md border px-2 py-1 shadow-sm">
       <Button variant="ghost" size="icon" className="mr-2">
         <Search className="h-5 w-5" />
       </Button>

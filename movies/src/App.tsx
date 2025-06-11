@@ -1,7 +1,59 @@
 import "./App.css";
 import { ContentWrapper } from "./components/ContentWrapper";
 import { Header } from "./components/Header";
+import { MovieCarousel } from "./components/MovieCarousel";
 import { SearchBar } from "./components/Searchbar";
+
+const featuredMovies = [
+  {
+    id: "1",
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg",
+    label: "Movie 1",
+  },
+  {
+    id: "2",
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg",
+    label: "Movie 2",
+  },
+  {
+    id: "3",
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg",
+    label: "Movie 3",
+  },
+  {
+    id: "4",
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg",
+    label: "Movie 4",
+  },
+  {
+    id: "1",
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg",
+    label: "Movie 1",
+  },
+  {
+    id: "2",
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg",
+    label: "Movie 2",
+  },
+  {
+    id: "3",
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg",
+    label: "Movie 3",
+  },
+  {
+    id: "4",
+    image:
+      "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg",
+    label: "Movie 4",
+  },
+];
 
 function App() {
   return (
@@ -9,23 +61,12 @@ function App() {
       <Header />
       <main className="flex-grow py-8 space-y-12">
         <ContentWrapper>
-          <SearchBar />
-
-          {/* Section 1 */}
-          <section className="bg-gray-50 rounded-xl p-6 shadow-sm mt-8">
-            <h2 className="text-xl font-semibold mb-4">Featured Movies</h2>
-            <p className="text-sm text-muted-foreground">
-              Explore trending movies curated just for you.
-            </p>
+          <SearchBar  />
+          <section className="flex flex-col w-full gap-4 py-8">
+            <MovieCarousel title="Featured Movies" items={featuredMovies} />
+            <MovieCarousel title="Featured Movies" items={featuredMovies} />
           </section>
-
-          {/* Section 2 */}
-          <section className="bg-gray-50 rounded-xl p-6 shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Top Actors</h2>
-            <p className="text-sm text-muted-foreground">
-              Discover profiles of popular actors from your favorite films.
-            </p>
-          </section>
+          {/* Carousel Section */}
         </ContentWrapper>
       </main>
       <footer className="bg-gray-900 text-white text-center py-6">
