@@ -53,3 +53,36 @@ export async function fetchMoviesByGenre(genreId: number, limit = 20) {
     return [];
   }
 }
+
+export async function searchMovies(query: string, limit = 20) {
+  if (!query.trim()) return [];
+
+  try {
+    const genreMap = await fetchGenreMap();
+
+    const res = await axios.get(`${BASE_URL}/search/movie`, {
+      params: {
+        api_key: API_KEY,
+        query,
+        page: 1,
+        include_adult: false,
+      },
+    });
+
+    return res.data.results.slice(0, limit).map((movie: any) => ({
+      id: movie.id,
+      image: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+      label: movie.title,
+      year: movie.release_date ? movie.release_date.slice(0, 4) : "N/A",
+      rating: movie.vote_average.toFixed(1),
+      genres: movie.genre_ids
+        .map((id: number) => genreMap[id])
+        .filter(Boolean)
+        .join(", "),
+    }));
+  } catch (error) {
+    console.error("Failed to search movies:", error);
+    return [];
+  }
+}
+
