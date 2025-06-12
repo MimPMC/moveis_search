@@ -6,22 +6,42 @@ import { Header } from "./components/Header";
 import { MovieCarousel } from "./components/MovieCarousel";
 import { SearchBar } from "./components/Searchbar";
 
-function App() {
-  const [actionMovies, setActionMovies] = useState([]);
-  const [comedyMovies, setComedyMovies] = useState([]);
+type Genre = {
+  id: number;
+  name: string;
+};
 
-  const actionGenreId = 28;
-  const comedyGenreId = 35;
+export interface Movie {
+  id: number;
+  image: string;
+  label: string;
+  year: string;
+  rating: string;
+  genres: string;
+}
+
+function App() {
+  const genres: Genre[] = [
+    { id: 28, name: "Action" },
+    { id: 35, name: "Comedy" },
+  ];
+
+  const [moviesByGenre, setMoviesByGenre] = useState<Record<number, Movie[]>>(
+    {}
+  );
 
   useEffect(() => {
     async function loadMovies() {
-      const [action, comedy] = await Promise.all([
-        fetchMoviesByGenre(actionGenreId),
-        fetchMoviesByGenre(comedyGenreId),
-      ]);
+      const results = await Promise.all(
+        genres.map(({ id }) => fetchMoviesByGenre(id))
+      );
 
-      setActionMovies(action);
-      setComedyMovies(comedy);
+      const moviesMap: Record<number, Movie[]> = {};
+      genres.forEach(({ id }, index) => {
+        moviesMap[id] = results[index];
+      });
+
+      setMoviesByGenre(moviesMap);
     }
 
     loadMovies();
@@ -34,18 +54,18 @@ function App() {
         <ContentWrapper>
           <SearchBar />
           <section className="flex flex-col w-full gap-4 py-8">
-            {actionMovies.length > 0 && (
-              <MovieCarousel
-                title="Popular Action Movies"
-                items={actionMovies}
-              />
-            )}
-            {comedyMovies.length > 0 && (
-              <MovieCarousel
-                title="Popular Comedy Movies"
-                items={comedyMovies}
-              />
-            )}
+            {genres.map(({ id, name }) => {
+              const movies = moviesByGenre[id] || [];
+              return (
+                movies.length > 0 && (
+                  <MovieCarousel
+                    key={id}
+                    title={`Popular ${name} Movies`}
+                    items={movies}
+                  />
+                )
+              );
+            })}
           </section>
         </ContentWrapper>
       </main>

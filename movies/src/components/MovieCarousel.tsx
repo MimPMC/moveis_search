@@ -1,3 +1,4 @@
+import type { Movie } from "@/App";
 import {
   Carousel,
   CarouselContent,
@@ -9,7 +10,7 @@ import { MovieCard } from "./MovieCard";
 
 type MovieCarouselProps = {
   title: string;
-  items: { id: string; image: string; label: string; year:string; rating:string, genres:string }[];
+  items: Movie[];
 };
 
 export function MovieCarousel({ title, items }: MovieCarouselProps) {
