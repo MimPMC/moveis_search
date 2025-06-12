@@ -9,7 +9,7 @@ import { MovieCard } from "./MovieCard";
 
 type MovieCarouselProps = {
   title: string;
-  items: { id: string; image: string; label: string }[];
+  items: { id: string; image: string; label: string; year:string; rating:string, genres:string }[];
 };
 
 export function MovieCarousel({ title, items }: MovieCarouselProps) {
@@ -25,9 +25,10 @@ export function MovieCarousel({ title, items }: MovieCarouselProps) {
             >
               <MovieCard
                 image={item.image}
-                label={item.label}
+                year={item.year}
                 title={item.label}
-                rating={4}
+                rating={item.rating}
+                genres={item.genres}
               />
             </CarouselItem>
           ))}
