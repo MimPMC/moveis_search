@@ -59,9 +59,9 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow py-8 space-y-12">
+      <main className="flex-grow py-8 space-y-12 mt-18">
         <ContentWrapper>
-          <SearchBar  />
+          <SearchBar />
           <section className="flex flex-col w-full gap-4 py-8">
             <MovieCarousel title="Featured Movies" items={featuredMovies} />
             <MovieCarousel title="Featured Movies" items={featuredMovies} />

@@ -1,5 +1,5 @@
 import { FaBars } from "react-icons/fa6";
-import { navLinks } from "../assets/data/Data";
+import { navLinks } from "../assets/data/data";
 import { ContentWrapper } from "./ContentWrapper"; // ✅ Proper import
 import { Button } from "./ui/button";
 import {
@@ -12,10 +12,9 @@ import { TypographyH3 } from "./ui/typography";
 
 export function Header() {
   return (
-    <header className="h-18 bg-white w-full text-black shadow-sm">
+    <header className="h-18 bg-white w-full text-black shadow-sm fixed z-100">
       <ContentWrapper className="h-full flex justify-between items-center py-5">
         <TypographyH3 text="The Movie Finder" />
-
         {/* Desktop Nav */}
         <nav
           role="navigation"
@@ -45,7 +44,7 @@ export function Header() {
             <DropdownMenuTrigger asChild className="cursor-pointer">
               <FaBars className="h-6 w-6" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
+            <DropdownMenuContent align="end" className="w-48 z-200">
               {navLinks.map(({ href, label }) => (
                 <DropdownMenuItem key={href} asChild>
                   <a

@@ -11,7 +11,7 @@ export function ContentWrapper({
   className = "",
 }: ContentWrapperProps) {
   return (
-    <div className={`w-full px-4 md:px-10 lg:px-24 ${className}`}>
+    <div className={`w-full px-4 md:px-12 lg:px-24 ${className}`}>
       {children}
     </div>
   );
