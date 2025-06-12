@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = "23ee64b57194d16608a936bd8e2a0b0f";
 
-// Cache for genre ID -> name mapping
 let genreMap: Record<number, string> = {};
 
 async function fetchGenreMap(): Promise<Record<number, string>> {
